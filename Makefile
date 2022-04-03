@@ -9,7 +9,7 @@ down:
 build:
 	mvn clean package
 
-run:
+run: up
 	java -Xmx1G -jar -Dspring.profiles.active=default ./target/*.jar $(PORT) $(RECEIVERS) $(PERSISTENCE)
 
 test:

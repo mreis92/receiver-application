@@ -13,8 +13,13 @@ public class RabbitMqConfig {
 
     @Bean
     public Connection connection() throws IOException, TimeoutException {
-        var factory = new ConnectionFactory();
-        factory.setHost("localhost");
-        return factory.newConnection();
+        try {
+            var factory = new ConnectionFactory();
+            factory.setHost("localhost");
+            return factory.newConnection();
+        } catch (IOException | TimeoutException e) {
+            System.err.printf("Could not connect to the queue: %s%n", e.getMessage());
+            throw e;
+        }
     }
 }

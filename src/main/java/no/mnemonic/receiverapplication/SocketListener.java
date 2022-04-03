@@ -31,13 +31,12 @@ public class SocketListener {
     public Runnable createRunnable(final Socket clientSocket, final int numberOfWorkers) {
         return () -> {
             try {
+                var channel = connection.createChannel();
+                channel.exchangeDeclare("socket-messages", "topic");
                 initializeWorkers(numberOfWorkers);
 
                 var out = new PrintWriter(clientSocket.getOutputStream(), true);
                 var in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                var channel = connection.createChannel();
-
-                channel.exchangeDeclare("socket-messages", "topic");
 
                 String inputLine;
                 while ((inputLine = in.readLine()) != null) {

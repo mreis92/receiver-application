@@ -12,7 +12,7 @@ import java.time.Instant;
 @Table(name = "messages")
 public class ReceiverMessage {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private int receiverId;
