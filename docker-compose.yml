@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  receiver_application_queue:
+    container_name: receiver_queue
+    hostname: receiver_queue
+    image: rabbitmq:3.8
+    restart: always
+    ports:
+      - "5672:5672"
